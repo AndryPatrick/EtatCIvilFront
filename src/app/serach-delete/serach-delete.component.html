@@ -1,0 +1,28 @@
+    <div class="panel-heading">
+        <h2>Liste des utilisateurs</h2>
+    </div>
+<div class="container">
+    <div class="row col-md-6 col-md-offset-2 custyle">
+        <table class="table table-striped custab">
+            <thead>
+                <tr>
+                    <th>Identifiant</th>
+                    <th>Nom</th>
+                    <th>Age</th>
+                    <th>Password</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>{{user.userId}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.password}}</td>
+                        <td>{{user.age}}</td>
+                        <td>{{user.username}}</td>
+                    </tr>
+                    
+                </tbody>
+        </table>
+    </div>
+</div>

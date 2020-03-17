@@ -1,0 +1,143 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark purple lighten-1" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          Basic dropdown<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
+          <div class="divider dropdown-divider"></div>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
+        </div>
+      </li>
+
+    </ul>
+    <!-- Links -->
+
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
+      </li>
+      <li class="nav-item avatar dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="" class="img-fluid rounded-circle z-depth-0"></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+        </div>
+      </li>
+    </ul>
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Ajouter une personne</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+
+          <div class="form-group">
+            <label for="username"><span class="req">*</span> Username:</label>
+            <input required type="text"  name="username"
+                class="form-control" type="text" placeholder="Entrer votre nom"/>
+        </div>
+
+          <label for="dateOfBirth">Date of birth</label>
+          <div class="input-group">
+            <input id="" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+            </div>
+          </div>
+
+        <div class="form-group">
+            <label for="password"><span class="req">*</span> password:</label>
+            <input required type="text" name="password" 
+                class="form-control" type="text" placeholder="Entrer votre password"/>
+        </div>
+
+        <div class="form-group">
+            <label for="age"><span class="req">*</span> Age:</label>
+            <input required type="text"  name="age"
+                class="form-control" type="number" placeholder="Entrer votre age"/>
+        </div>
+
+        <div class="form-group">
+            <label for="gender"><span class="req">*</span> sexe:</label>
+            <input required type="text"  name="gender"
+                class="form-control" type="text" placeholder="Entrer votre sexe"/>
+            <div class="status" id="status"></div>   
+        </div>
+
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Enregister</button>
+    </div>
+  </ng-template>
+  
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Ajouter person</button>
+  
+  <hr>
+  
+  <pre>{{closeResult}}</pre>
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Identifiant</th>
+                    <th>Nom</th>
+                    <th>Age</th>
+                    <th>Password</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr *ngFor="let pers of person">
+                        <td>{{pers.name}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        
+                        <td class="rest-center"><!--<button class="btn btn-danger btn-xs" (click)="deleteUser(user.userId)"> --><button class="btn btn-danger btn-xs" (click)="open('focusFirst')">
+                          <span class="glyphicon glyphicon-remove">delete</span>
+                        </button><span class="glyphicon glyphicon-remove"></span></td>
+                    </tr>
+                    
+                </tbody> 
+        </table>
+    </div>
+</div>
+
+<p>list-person works!</p>
