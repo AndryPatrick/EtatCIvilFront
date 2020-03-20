@@ -9,8 +9,10 @@ import { Person } from '../person';
   styleUrls: ['./list-person.component.css']
 })
 export class ListPersonComponent implements OnInit {
-  person: any;
+  person1: any;
   closeResult: string;
+  message: any;
+  person: Person = new Person("","", " Date().toDateString",  "",0, new Date(),  "","","","", new Date(),   "");
 
   constructor( private servicePers:PersonService, private modalService: NgbModal) { }
 
@@ -32,10 +34,25 @@ export class ListPersonComponent implements OnInit {
     }
   }
 
+  public addPersonNow() {
+    let response = this.servicePers.addPerson(this.person);
+    response.subscribe((data)=>this.message=data)
+  }
+
+  public getPersonByCIN(identityNumber) {
+     let resp = this.servicePers.getPersonByCIN(identityNumber);
+     resp.subscribe((data)=>this.message=data)
+  }
+
+public deletePerson(id:number) {
+  let resp = this.servicePers.deletePerson(id);
+     resp.subscribe((data)=>this.message=data)
+}
+
   ngOnInit(){
     this.servicePers.getListPerson().subscribe(data => {
-      this.person = data;
-      console.log('this.data',this.person)
+      this.person1 = data;
+      console.log('this.data',this.person1)
     });
   }
 

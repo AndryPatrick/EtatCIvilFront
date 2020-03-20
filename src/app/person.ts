@@ -1,4 +1,5 @@
 export class Person {
+    id: number;
     name : String;
     familyName: String;
     dateOfBirth : Date;
@@ -12,20 +13,21 @@ export class Person {
     duplicateDate: Date;
     placeOfDuplicateDate: String;
 
-    /*constructor(
-        name : String,
+
+
+    constructor(
+    name : String,
     familyName: String,
     dateOfBirth : String,
     placeOfBirth : String,
     identityNumber : number,
-    dateDelivry : String,
+    dateDelivry : Date,
     placeDelivry : String,
     fatherName : String,
     motherName: String,
     profession : String,
-    duplicateDate: String,
+    duplicateDate: Date,
     placeOfDuplicateDate: String
-    ) {} */
+    ) {} 
 
-    constructor(name: String, dateDelivry:String){}
 }

@@ -11,8 +11,10 @@ import { RegistrationComponent } from './registration/registration.component';
 import { CommonModule } from '@angular/common';
 import { AddPersonComponent } from './add-person/add-person.component';
 import { ListPersonComponent } from './list-person/list-person.component';
-import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbModal, NgbModule, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +22,7 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SerachDeleteComponent,
     AddPersonComponent,
     ListPersonComponent,
+
   ],
   imports: [
     AppRoutingModule,
@@ -29,7 +32,10 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule, 
     CommonModule,
     NgbModule,
-
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    BsDatepickerModule.forRoot()
+    
   ],
   providers: [UserRegistrationService],
   bootstrap: [AppComponent]

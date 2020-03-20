@@ -10,7 +10,7 @@ import { Person } from '../person';
 export class AddPersonComponent implements OnInit {
 
   //person: Person = new Person("","","","",0,"","","","","","","")
-  person : Person = new Person("","");
+  //person : Person = new Person("","");
   message: any;
 
   constructor(private servicePers: PersonService) { }
@@ -18,9 +18,9 @@ export class AddPersonComponent implements OnInit {
   ngOnInit() {
     
   }
-  public addPersonNow() {
+ /* public addPersonNow() {
     let response = this.servicePers.addPerson(this.person);
     response.subscribe((data)=>this.message=data)
-  }
+  } */
 
 }

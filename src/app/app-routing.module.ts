@@ -5,7 +5,7 @@ import { SerachDeleteComponent } from './serach-delete/serach-delete.component';
 import { ListPersonComponent } from './list-person/list-person.component';
 
 const routes: Routes = [
-  {path:"",redirectTo:"liste",pathMatch:"full"},
+  {path:"",redirectTo:"listePerson",pathMatch:"full"},
   {path:"register",component:RegistrationComponent},
   {path:"liste",component:SerachDeleteComponent},
   {path:"listePerson", component:ListPersonComponent}
