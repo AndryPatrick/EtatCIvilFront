@@ -1,0 +1,155 @@
+
+<!-- Load an icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- The sidebar -->
+<div class="sidebar">
+  <a routerLink="http://localhost/Gestion/"><i class="fa fa-fw fa-home"></i> Accueil</a>
+  <a routerLink="http://localhost/CodeIgniterTest/index.php/PersonneController" target="_blank"><i class="fa fa-fw fa-wrench"></i> PHP</a>
+  <a routerLink="/listePerson"><i class="fa fa-fw fa-user"></i> JAVA</a>
+  <a routerLink="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+</div>
+<div class="main">
+  <div class="topnav" id="myTopnav">
+    <a routerLink="/listePerson" class="fa fa-angry">Persone</a>
+   <div class="dropdown">
+      <button class="dropbtn" >Localisation
+        <i class="fa fa-sort-down"> </i>
+      </button>
+      <div class="dropdown-content">
+        <a routerLink="/listeProvince">Province</a>
+        <a routerLink="/listeRegion" class="active">Region</a>
+        <a routerLink="/listeDistrict">District</a>
+        <a routerLink="/listeCommune">Commune</a>
+      </div>
+    </div> 
+    <a routerLink="#about">Contact</a>
+    <a routerLink="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+  <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Ajouter une région</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+              <div class="form-group">
+                <label for="name"><span class="req">*</span> Nom région:</label>
+                <input required type="text"  name="nameRegion" [(ngModel)]="regionAdd.nameRegion"
+                 class="form-control" type="text" placeholder="entrer nom région"/>
+              </div>
+              <div class="form-group">
+                <label for="username"><span class="req">*</span> Province:</label><br/>
+                <select [(ngModel)]="regionAdd.idProvince" name="idProvince">
+                  <option *ngFor="let province of provinceRegion" value="{{province.idProvince}}">{{province.nomProvince}}</option>
+                </select>
+              </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#actualiserListe" (click)="modal.close(addRegion())">Enregister</button>
+        </div>
+  </ng-template>
+          
+      <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Ajouter region</button>
+  
+  <hr>
+
+      <pre>{{closeResult}}</pre>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-dark">
+                <thead>
+                    <tr class="table-dark">
+                      <th>Code region</th>
+                        <th>Region</th>
+                        <th>Province</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let reg of region" >
+                      <td>{{reg.codeRegion}}</td>
+                        <td>{{reg.nameRegion}}</td>
+                        <td>{{reg.nomProvince}}</td>
+                        <td class="rest-center"><button class="btn btn-primary btn-xs" (click)="deletePerson()"> Modifier</button>
+                    </tr>
+                </tbody> 
+            </table>
+        </div>
+    </div>
+  </div>
+
+
+
+  <p>list-person works!</p>
+
+  <!-- Footer -->
+<footer class="page-footer font-small special-color-dark pt-4">
+
+  <!-- Footer Elements -->
+  <div class="container">
+
+    <!-- Social buttons -->
+    <ul class="list-unstyled list-inline text-center">
+      <li class="list-inline-item">
+        <a class="btn-floating btn-fb mx-1">
+          <i class="fab fa-facebook-f"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-tw mx-1">
+          <i class="fab fa-twitter"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-gplus mx-1">
+          <i class="fab fa-google-plus-g"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-li mx-1">
+          <i class="fab fa-linkedin-in"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-dribbble mx-1">
+          <i class="fab fa-dribbble"> </i>
+        </a>
+      </li>
+    </ul>
+    <!-- Social buttons -->
+
+  <!-- modal  pour actualiser liste après ajout-->
+  <div class="modal fade" id="actualiserListe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">Ajout Region</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="color:royalblue;">
+          Valeur ajouté avec succès
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-xs" data-dismiss="modal" (click)="listRegion()"> OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <!-- Footer Elements -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="http://localhost:4200/listePerson"> Spring boot </a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->

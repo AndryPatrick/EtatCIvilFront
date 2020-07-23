@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PersonService } from '../person.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Person } from '../person';
+import { CommuneService } from '../commune.service';
+import { Commune } from '../commune';
 
 @Component({
   selector: 'app-list-person',
@@ -12,9 +14,11 @@ export class ListPersonComponent implements OnInit {
   person1: any;
   closeResult: string;
   message: any;
-  person: Person = new Person("","", " Date().toDateString",  "",0, new Date(),  "","","","", new Date(),   "");
+  personAdd: Person = new Person("","", " Date().toDateString",  "",0, new Date(), "","","", new Date(),   "", "","",0,0);
+  person : Person;
+  communeName : any;
 
-  constructor( private servicePers:PersonService, private modalService: NgbModal) { }
+  constructor( private servicePers:PersonService, private modalService: NgbModal, private commune:CommuneService) { }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -35,7 +39,7 @@ export class ListPersonComponent implements OnInit {
   }
 
   public addPersonNow() {
-    let response = this.servicePers.addPerson(this.person);
+    let response = this.servicePers.addPerson(this.personAdd);
     response.subscribe((data)=>this.message=data)
   }
 
@@ -44,16 +48,44 @@ export class ListPersonComponent implements OnInit {
      resp.subscribe((data)=>this.message=data)
   }
 
-public deletePerson(id:number) {
-  let resp = this.servicePers.deletePerson(id);
-     resp.subscribe((data)=>this.message=data)
-}
+  public deletePerson(id:number) {
+    let resp = this.servicePers.deletePerson(id);
+     resp.subscribe((data)=>this.person1 = data)
+  }
+
+  public listPerson() {
+    this.servicePers.getListPerson().subscribe(
+      data => {
+                this.person1 = data;
+                console.log('this.data',this.person1)
+              }
+    );
+  }
+
+  public getCommune() {
+    this.commune.getCommune().subscribe(
+      data => {
+                  this.communeName = data;
+                  console.log('this.data',this.communeName);
+              }
+    );
+  }
 
   ngOnInit(){
-    this.servicePers.getListPerson().subscribe(data => {
-      this.person1 = data;
-      console.log('this.data',this.person1)
-    });
+    this.servicePers.getListPerson().subscribe(
+      data => {
+                this.person1 = data;
+                console.log('this.data',this.person1)
+              }
+    );
+
+    this.commune.getCommune().subscribe(
+      data => {
+        this.communeName = data;
+        console.log('this.data',this.communeName);
+    }
+    );
   }
+
 
 }

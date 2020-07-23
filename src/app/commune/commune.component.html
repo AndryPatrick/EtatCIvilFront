@@ -1,0 +1,164 @@
+<div class="sidebar">
+  <a routerLink="http://localhost/Gestion/"><i class="fa fa-fw fa-home"></i> Accueil</a>
+  <a routerLink="http://localhost/CodeIgniterTest/index.php/PersonneController"><i class="fa fa-fw fa-wrench"></i> PHP</a>
+  <a routerLink="/listePerson"><i class="fa fa-fw fa-user"></i> JAVA</a>
+  <a routerLink="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+</div>
+<div class="main">
+  <div class="topnav" id="myTopnav">
+    <a routerLink ="/listePerson" class="fa fa-angry">Persone</a>
+  <div class="dropdown">
+      <button class="dropbtn" >Localisation
+        <i class="fa fa-sort-down"> </i>
+      </button>
+      <div class="dropdown-content">
+        <a routerLink="/listeProvince">Province</a>
+        <a routerLink="/listeRegion">Region</a>
+        <a routerLink="/listeDistrict">District</a>
+        <a routerLink="/listeCommune" routerLinkActive="active">Commune</a>
+      </div>
+    </div> 
+     <a href="#about">Contact</a>
+     <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+
+  <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Ajouter une commune</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+
+              <div class="form-group">
+                <label for="name"><span class="req">*</span> nom commune:</label>
+                <input required type="text"  name="nameCommune" [(ngModel)]="communeAdd.nameCommune"
+                 class="form-control" type="text" placeholder="entrer nom commune"/>
+              </div>
+
+              <div class="form-group">
+                <label for="username"><span class="req">*</span> nom district:</label>
+                <select name="idDistrict" [(ngModel)]="communeAdd.idDistrict">
+                  <option ></option>
+                  <option *ngFor="let district of districtCommune"value="{{district.idDistrict}}">{{district.nameDistrict}}</option>
+                </select>
+              </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#actualiserListe" (click)="modal.close(addCommune())">Enregister</button>
+        </div>
+      </ng-template>
+          
+      <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Ajouter commune</button>
+  
+  <hr>
+
+      <pre>{{closeResult}}</pre>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-dark" >
+                <thead > 
+                    <tr class="table-dark" style="font-weight: bold;">
+                      <th>Code commune</th>
+                        <th>Commune</th>
+                        <th>District</th>
+                        <th>Region</th>
+                        <th>Province</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let com of commune">
+                    <tr *ngIf="com.nameDistrict == 'AMBOHIDRATRIMO'" >
+                        <td>{{com.codeCommune}}</td>
+                        <td>{{com.nameCommune}}</td>
+                        <td>{{com.nameDistrict}}</td>
+                        <td>{{com.nameRegion}}</td>
+                        <td>{{com.nomProvince}}</td>
+                        <td class="rest-center"class="fa fa-edit"><button class="btn btn-primary btn-xs" (click)="deletePerson()" > Modifier</button></td>
+                    </tr>
+                </tbody> 
+            </table>
+        </div>
+    </div>
+  </div>
+
+  <!-- modal  pour actualiser liste après ajout-->
+  <div class="modal fade" id="actualiserListe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">Suppression!!!!!!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="color:royalblue;">
+          Valeur ajouté avec succès
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger btn-xs" data-dismiss="modal" (click)="listPerson()"> OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  
+
+
+
+
+  <p>list-person works!</p>
+
+  <!-- Footer -->
+<footer class="page-footer font-small special-color-dark pt-4">
+
+  <!-- Footer Elements -->
+  <div class="container">
+
+    <!-- Social buttons -->
+    <ul class="list-unstyled list-inline text-center">
+      <li class="list-inline-item">
+        <a class="btn-floating btn-fb mx-1">
+          <i class="fab fa-facebook-f"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-tw mx-1">
+          <i class="fab fa-twitter"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-gplus mx-1">
+          <i class="fab fa-google-plus-g"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-li mx-1">
+          <i class="fab fa-linkedin-in"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-dribbble mx-1">
+          <i class="fab fa-dribbble"> </i>
+        </a>
+      </li>
+    </ul>
+    <!-- Social buttons -->
+
+  </div>
+  <!-- Footer Elements -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="http://localhost:4200/listePerson"> Spring boot </a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->

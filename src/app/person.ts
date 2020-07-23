@@ -3,8 +3,9 @@ export class Person {
     name : String;
     familyName: String;
     dateOfBirth : Date;
-    placeOfBirth : String;
+    idCommune : String;
     identityNumber : number;
+    idendityNumberSt : String;
     dateDelivry : Date;
     placeDelivry : String;
     fatherName : String;
@@ -12,7 +13,9 @@ export class Person {
     profession : String
     duplicateDate: Date;
     placeOfDuplicateDate: String;
-
+    dateOfBirthWord: String;
+    sexeStr : String;
+    situationMatrimonialeStr : String;
 
 
     constructor(
@@ -22,12 +25,15 @@ export class Person {
     placeOfBirth : String,
     identityNumber : number,
     dateDelivry : Date,
-    placeDelivry : String,
     fatherName : String,
     motherName: String,
     profession : String,
-    duplicateDate: Date,
-    placeOfDuplicateDate: String
+    dateDuplicate: Date,
+    placeOfDuplicate: String,
+    identidyNumberSt : String,
+    placeOfDelivry : String,
+    sexe : number,
+    situationMatrimoniale : number
     ) {} 
 
 }

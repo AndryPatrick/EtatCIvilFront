@@ -1,0 +1,236 @@
+<!-- Load an icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- The sidebar -->
+<div class="sidebar">
+  <a routerLink="http://localhost/Gestion/"><i class="fa fa-fw fa-home"></i> Accueil</a>
+  <a routerLink="http://localhost/CodeIgniterTest/index.php/PersonneController"><i class="fa fa-fw fa-wrench"></i> PHP</a>
+  <a routerLink="/listePerson"><i class="fa fa-fw fa-user"></i> JAVA</a>
+  <a routerLink="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+</div>
+<div class="main">
+  <div class="topnav" id="myTopnav">
+    <a routerLink="/listePerson" class="fa fa-angry">Persone</a>
+   <div class="dropdown">
+      <button class="dropbtn" >Localisation
+        <i class="fa fa-sort-down"> </i>
+      </button>
+      <div class="dropdown-content">
+        <a routerLink="/listeProvince" routerLinkActive="active">Province</a>
+        <a routerLink="/listeRegion">Region</a>
+        <a routerLink="/listeDistrict">District</a>
+        <a routerLink="/listeCommune">Commune</a>
+      </div>
+    </div> 
+    <a routerLink="#about">Contact</a>
+    <a routerLink="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+  <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Ajouter une province</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+              <div class="form-group">
+                <label for="nomProvince"><span class="req" required>*</span> nom province:</label>
+                <input required type="text"  name="nomProvince" [(ngModel)]="province.nomProvince"
+                    class="form-control" type="text" placeholder="entrer nom province"/>
+              </div>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#actualiserListe" (click)="modal.close(addProvince())">Enregister</button>
+        </div>
+  </ng-template>
+
+  <!--  MOdification-->
+  <ng-template #content1 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Ajouter une province</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form >
+          <div class="form-group">
+            <label for="nomProvince"><span class="required" required>*</span> nom province:</label>
+            <input required type="text"  name="nomProvince" [(ngModel)]="province.nomProvince"
+                class="form-control" type="text" placeholder="entrer nom province"/>
+          </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#actualiserListe" (click)="modal.close(addProvince())">Enregister</button>
+    </div>
+</ng-template>
+<!--Fin modif-->
+          
+      <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Ajouter province</button>
+  
+        <!-- suppression  -->
+  <div class="panel-heading">  
+    <h1 style="text-align: center">Students</h1><br>  
+    <div class="row" [hidden]="!deleteMessage">  
+           
+              <div class="col-sm-4"></div>  
+              <div class="col-sm-4">  
+                      <div class="alert alert-info alert-dismissible">  
+                              <button type="button" class="close" data-dismiss="alert">�</button>  
+                              <strong>province supprimée avec succès</strong>  
+                      </div>  
+              </div>  
+              <div class="col-sm-4"></div>  
+      </div>             
+  </div> 
+
+  <hr>
+
+      <!--<pre>{{closeResult}}</pre>-->
+    <div class="container">
+        <div class="panel-body" style="width: 50%;">
+            <table class="table table-hover table-sm" datatable [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger"  >
+                <thead class="thead-light">
+                    <tr class="table-dark">
+                        <th>Code province</th>
+                        <th>Province</th>
+                        <th > Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let prov of provinces" >
+                        <td>{{prov.code}}</td>
+                        <td>{{prov.nomProvince}}</td>
+                        <td class="rest-center" ><button style="border-top-left-radius: 0cm;" class="btn btn-danger rybtn-xs" (click)="deleteProvince(prov.idProvince)"> delete</button>
+                        
+                          &nbsp;&nbsp;&nbsp;&nbsp;<button (click)="updateProvince(prov.idProvince)" class="btn btn-info"
+                          data-toggle="modal" data-target="#myModal"> modifier</button>
+
+                    </tr>
+                </tbody> 
+            </table>
+        </div>
+    </div>
+    </div>
+
+  <!-- modal  pour actualiser liste après ajout-->
+  <div class="modal fade" id="actualiserListe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">Ajout province</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="color:royalblue;">
+          Valeur ajouté avec succès
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary btn-xs" data-dismiss="modal" (click)="listeProvince()"> OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- modal modification  -->
+  <div class="modal" id="myModal">  
+    <div class="modal-dialog">  
+      <div class="modal-content">  
+      <form [formGroup]="provinceUpdateForm" #updprov (ngSubmit)="updateProv(updprov)">  
+        <!-- Modal Header -->  
+        <div class="modal-header">  
+          <h4 class="modal-title" style="text-align: center">Mis à jour province</h4>             
+        </div>  
+          
+        <!-- Modal body -->  
+        <div class="modal-body" *ngFor="let province of provinceList">
+           <div [hidden]=""> 
+                  <input type="hidden" class="form-control"  formControlName="idProvince" [(ngModel)]="province.idProvince" name="idProvince">  
+
+                  <div class="form-group">  
+                      <label for="name">Code Province :</label>  
+                      <input type="text" class="form-control" formControlName="code" readonly [(ngModel)]="province.code"  name="code">  
+                  </div>  
+            
+                  <div class="form-group">  
+                      <label for="name">nom province</label>  
+                      <input type="text" class="form-control" formControlName="nomProvince" [(ngModel)]="province.nomProvince">  
+                  </div>          
+                    
+           </div>
+           <div [hidden]="!isupdated">
+                <h4>Province mis à jour</h4>
+           </div>
+        </div>
+        <!-- Modal footer -->  
+        <div class="modal-footer" >  
+          <button type="submit" class="btn btn-success" [hidden]="isupdated">Update</button>  
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeisUpdate()">Close</button>  
+        </div>  
+          
+    </form>  
+      </div>  
+    </div>  
+  </div> 
+
+
+
+
+
+
+
+
+  <p>list-person works!</p>
+
+  <!-- Footer -->
+<footer class="page-footer font-small special-color-dark pt-4">
+
+  <!-- Footer Elements -->
+  <div class="container">
+
+    <!-- Social buttons -->
+    <ul class="list-unstyled list-inline text-center">
+      <li class="list-inline-item">
+        <a class="btn-floating btn-fb mx-1">
+          <i class="fab fa-facebook-f"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-tw mx-1">
+          <i class="fab fa-twitter"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-gplus mx-1">
+          <i class="fab fa-google-plus-g"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-li mx-1">
+          <i class="fab fa-linkedin-in"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-dribbble mx-1">
+          <i class="fab fa-dribbble"> </i>
+        </a>
+      </li>
+    </ul>
+    <!-- Social buttons -->
+
+  </div>
+  <!-- Footer Elements -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="http://localhost:4200/listePerson"> Spring boot </a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->

@@ -1,7 +1,8 @@
 body {
-    padding-top: 5rem;
+    padding-top: 0;
     color: black;
     font-weight: 400;
+    background-color:rgb(245, 246, 248);
   }
   
   .navbar {

@@ -1,0 +1,96 @@
+<div class="form-group">
+  <label for="placeholder"><span class="req">*</span> Lieu de naissance:</label>
+      <select ng-options="com as com.nameCommune for com in communeName"></select> 
+      <select>
+        <option>Selectionner commune</option>
+        <option *ngFor="let commune of communeName" value="{{commune.id}}">{{commune.nameCommune}}</option>
+      </select>
+</div>
+      
+      
+      <form>
+
+          <div class="form-group">
+            <label for="name"><span class="req">*</span> Nom:</label>
+            <input required type="text"  name="name" [(ngModel)]="personAdd.name"
+             class="form-control" type="text" placeholder="Entrer votre nom"/>
+          </div>
+
+          <div class="form-group">
+            <label for="username"><span class="req">*</span> Prénom:</label>
+            <input required type="text"  name="username" [(ngModel)]="personAdd.familyName"
+                class="form-control" type="text" placeholder="Entrer votre prénom"/>
+          </div>
+
+          <div class="form-group">
+            <label for="dateOfBirth"><span class="req">*</span> Date de naissance:</label>
+                <input required type="text" name="dateOfBirth" [(ngModel)]="personAdd.dateOfBirth" 
+                class="form-control" type="text" placeholder="lieu de naisance" /> <!--bsDatepicker -->
+        </div>
+
+
+        <div class="form-group">
+            <label for="placeholder"><span class="req">*</span> Lieu de naissance:</label>
+           <!--    <input required type="text" name="placeholder" [(ngModel)]="personAdd.placeOfBirth" 
+                class="form-control" type="text" placeholder="lieu de naisance"/> -->
+                <select>
+                  <option></option>
+                    <tr *ngFor="let com of communeName">
+                      <option>{{com.nameCommune}}</option>
+                    </tr>
+                </select>
+        </div>
+
+        <div class="form-group">
+          <label for="dateDelivry"><span class="req">*</span> Date de délivrance:</label>
+              <input required type="text"  name="dateDelivry" [(ngModel)]="personAdd.dateDelivry"
+              class="form-control" type="text" placeholder="Date de délivrance" /> <!--bsDatepicker -->
+          <div class="status" id="status"></div>   
+      </div>
+
+
+
+        <div class="form-group">
+          <label for="placeDelivry"><span class="req">*</span> Lieu de délivrance:</label>
+              <input required type="text"  name="placeDelivry" [(ngModel)]="personAdd.idCommune"
+              class="form-control" type="text" placeholder="Lieu de délivrance"/>
+          <div class="status" id="status"></div>   
+      </div>
+
+      <div class="form-group">
+        <label for="fatherName"><span class="req">*</span> Nom du père:</label>
+        <input required type="text"  name="fatherName" [(ngModel)]="personAdd.fatherName"
+            class="form-control" type="text" placeholder="Nom de la mère"/>
+        <div class="status" id="status"></div>   
+      </div>
+      
+      <div class="form-group">
+        <label for="motherName"><span class="req">*</span> Nom de la mère:</label>
+        <input required type="text"  name="motherName" [(ngModel)]="personAdd.motherName"
+            class="form-control" type="text" placeholder="Nom de la mère"/>
+        <div class="status" id="status"></div>   
+      </div>
+
+      <div class="form-group">
+        <label for="profession"><span class="req">*</span> Profession:</label>
+        <input required type="text"  name="profession" [(ngModel)]="personAdd.profession"
+            class="form-control" type="text" placeholder="profession"/>
+        <div class="status" id="status"></div>   
+      </div>
+
+      <div class="form-group">
+        <label for="duplicateDate"><span class="req">*</span> Date duplicata:</label>
+        <input required type="text"  name="duplicateDate" [(ngModel)]="personAdd.duplicateDate"
+            class="form-control" type="text" placeholder="date de délivrance" /> <!--bsDatepicker -->
+        <div class="status" id="status"></div>   
+      </div>
+
+
+      <div class="form-group">
+        <label for="placeOfDuplicateDate"><span class="req">*</span> Lieu duplicata:</label>
+        <input required type="text"  name="placeOfDuplicateDate" [(ngModel)]="personAdd.placeOfDuplicateDate"
+            class="form-control" type="text" placeholder="lieu de délivrance"/>
+        <div class="status" id="status"></div>   
+      </div>
+
+      </form>

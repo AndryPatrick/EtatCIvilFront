@@ -1,0 +1,31 @@
+<div class="modal" id="myModal">  
+    <div class="modal-dialog">  
+      <div class="modal-content">  
+      <form  (ngSubmit)="onSubmit()">  
+        <!-- Modal Header -->  
+        <div class="modal-header">  
+          <h4 class="modal-title" style="text-align: center">Mis à jour province</h4>  
+            
+        </div>  
+          
+        <!-- Modal body -->  
+        <div class="modal-body">
+          <div class="form-group">
+            
+            <label for="nomProvince"><span class="req" required>*</span> nom province:</label>
+            <input required type="text"  name="nomProvince" (ngModel)="province.nomProvince"
+                class="form-control" type="text"/>
+          </div>
+          
+      </div>
+          
+        <!-- Modal footer -->  
+        <div class="modal-footer" >  
+          <button type="submit" class="btn btn-success" >Update</button>  
+          <button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>  
+        </div>  
+          
+    </form>  
+      </div>  
+    </div>  
+  </div>
