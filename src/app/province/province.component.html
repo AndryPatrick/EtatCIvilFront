@@ -74,7 +74,7 @@
   
         <!-- suppression  -->
   <div class="panel-heading">  
-    <h1 style="text-align: center">Students</h1><br>  
+    <h1 style="text-align: center">Province</h1><br>  
     <div class="row" [hidden]="!deleteMessage">  
            
               <div class="col-sm-4"></div>  
@@ -105,7 +105,8 @@
                     <tr *ngFor="let prov of provinces" >
                         <td>{{prov.code}}</td>
                         <td>{{prov.nomProvince}}</td>
-                        <td class="rest-center" ><button style="border-top-left-radius: 0cm;" class="btn btn-danger rybtn-xs" (click)="deleteProvince(prov.idProvince)"> delete</button>
+                        <td class="rest-center" ><button style="border-top-left-radius: 0cm;" class="btn btn-danger rybtn-xs"
+                           (click)="deleteProvince(prov.idProvince)"> delete</button>
                         
                           &nbsp;&nbsp;&nbsp;&nbsp;<button (click)="updateProvince(prov.idProvince)" class="btn btn-info"
                           data-toggle="modal" data-target="#myModal"> modifier</button>

@@ -23,6 +23,6 @@ export class PersonService {
   }
 
   public deletePerson(id) {
-    return this.http.delete("http://localhost:8080/person/deletePerson/"+id);
+    return this.http.delete("http://localhost:8080/localisation/deleteProvince/"+id);
   }
 }

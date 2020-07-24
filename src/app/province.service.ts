@@ -30,8 +30,8 @@ export class ProvinceService {
     return this.http.get(url);
   }
 
-  public deleteProvince(id:number) : Observable<any> {
-    return this.http.delete(`http://localhost:8080/localisation/deleteProvince/${id}`, {responseType:'text'});
+  public deleteProvince(id) : Observable<any>{
+    return this.http.delete("http://localhost:8080/localisation/deleteProvince/"+id);
   }
 
   public updateProvince(id:number, value: any) : Observable<Object> { 

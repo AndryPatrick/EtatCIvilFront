@@ -45,6 +45,10 @@ export class ProvinceComponent implements OnInit {
       })
   }
 
+  public deleteProvince1(id:number) {
+    let resp = this.serviceProvince.deleteProvince(id);
+     resp.subscribe((data)=>this.provinceList = data)
+  }
 
   deleteProvince(id:number) {
     this.serviceProvince.deleteProvince(id)
@@ -53,7 +57,7 @@ export class ProvinceComponent implements OnInit {
             console.log(data);
             this.deleteMessage=true;
             this.serviceProvince.getListProvince().subscribe(data => {
-              this.provinces = data
+              this.provinces = data;
             })
         },
           error => console.log(error));
