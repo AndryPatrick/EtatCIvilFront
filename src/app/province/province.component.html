@@ -100,12 +100,12 @@
                         <th>Province</th>
                         <th > Action</th>
                     </tr>
-                </thead>
+                </thead> 
                 <tbody>
                     <tr *ngFor="let prov of provinces" >
                         <td>{{prov.code}}</td>
                         <td>{{prov.nomProvince}}</td>
-                        <td class="rest-center" ><button style="border-top-left-radius: 0cm;" class="btn btn-danger rybtn-xs"
+                        <td class="rest-center" ><button style="border-top-left-radius: 0cm; position: center;" class="btn btn-danger rybtn-xs"
                            (click)="deleteProvince(prov.idProvince)"> delete</button>
                         
                           &nbsp;&nbsp;&nbsp;&nbsp;<button (click)="updateProvince(prov.idProvince)" class="btn btn-info"
