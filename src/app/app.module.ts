@@ -12,17 +12,18 @@ import { CommonModule } from '@angular/common';
 import { NgbModal, NgbModule, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { BsDatepickerModule } from 'ngx-bootstrap';
 import { UpdateProinceComponent } from './update-proince/update-proince.component';
 import {DataTablesModule} from 'angular-datatables';
 import {MatTableModule} from '@angular/material/table';
+import { TestDesignComponent } from './test-design/test-design.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     SerachDeleteComponent,
     routingComponents,
-    UpdateProinceComponent
+    UpdateProinceComponent,
+    TestDesignComponent
   ],
   imports: [
     AppRoutingModule,
@@ -36,7 +37,6 @@ import {MatTableModule} from '@angular/material/table';
     MatDatepickerModule,
     DataTablesModule,
     MatTableModule,
-    BsDatepickerModule.forRoot()
     
   ],
   exports: [

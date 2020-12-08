@@ -182,37 +182,4 @@ export class ProvinceComponent implements OnInit {
     );
   }
 
-
- /* update ( idProvince:number){
-    this.idProvince = this.route.snapshot.params['idProvince'];
-    this.serviceProvince.getProvince(this.idProvince).subscribe(
-      data => {
-        console.log(data)
-        this.provinceList = data;
-      }, error => console.log(error));
-  }
-
-  updateProvince() {
-    this.serviceProvince.updateProvince(this.idProvince, this.province).
-      subscribe(data => console.log(data), error => console.log(error));
-      this.province1 = new Province1();
-      this.gotoList();
-  }
-
-  onSubmit() {
-    this.updateProvince();
-  }
-
-  gotoList() {
-    this.router.navigate(['/listeProvince']);
-  }
-
- /* updateProvincee(id : number) {
-      this.router.navigate(["/update", id]);
-  } */
-
-
-// nouveau methode
-
-
 }

@@ -41,7 +41,6 @@
               <div class="form-group">
                 <label for="username"><span class="req">*</span> nom district:</label>
                 <select name="idDistrict" [(ngModel)]="communeAdd.idDistrict">
-                  <option ></option>
                   <option *ngFor="let district of districtCommune"value="{{district.idDistrict}}">{{district.nameDistrict}}</option>
                 </select>
               </div>

@@ -9,6 +9,7 @@ import { ProvinceComponent } from './province/province.component';
 import { RegionComponent } from './region/region.component';
 import { AjoutPersonneComponent } from './ajout-personne/ajout-personne.component';
 import { UpdateProinceComponent } from './update-proince/update-proince.component';
+import { TestDesignComponent } from './test-design/test-design.component';
 
 const routes: Routes = [
   {path:"",redirectTo:"listePerson",pathMatch:"full"},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path : "listeDistrict", component:DistrictComponent},
   {path : "listeCommune" , component:CommuneComponent},
   {path : "ajoutPersonne" , component:AjoutPersonneComponent},
-  {path : "update/:id", component:UpdateProinceComponent}
+  {path : "update/:id", component:UpdateProinceComponent},
+  {path : "test", component:TestDesignComponent}
 ];
 
 @NgModule({
@@ -29,4 +31,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [RegistrationComponent, SerachDeleteComponent, ListPersonComponent,CommuneComponent,DistrictComponent,
-                                  ProvinceComponent, RegionComponent, AjoutPersonneComponent,UpdateProinceComponent]
+                                  ProvinceComponent, RegionComponent, AjoutPersonneComponent,UpdateProinceComponent, TestDesignComponent]

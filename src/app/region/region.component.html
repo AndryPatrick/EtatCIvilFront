@@ -1,10 +1,10 @@
-
+<body>
 <!-- Load an icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- The sidebar -->
 <div class="sidebar">
   <a routerLink="http://localhost/Gestion/"><i class="fa fa-fw fa-home"></i> Accueil</a>
-  <a routerLink="http://localhost/CodeIgniterTest/index.php/PersonneController" target="_blank"><i class="fa fa-fw fa-wrench"></i> PHP</a>
+  <a routerLink="http://localhost/CodeIgniterTest/index.php/PersonneController"><i class="fa fa-fw fa-wrench"></i> PHP</a>
   <a routerLink="/listePerson"><i class="fa fa-fw fa-user"></i> JAVA</a>
   <a routerLink="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
 </div>
@@ -32,16 +32,16 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body">          
           <form>
               <div class="form-group">
                 <label for="name"><span class="req">*</span> Nom région:</label>
-                <input required type="text"  name="nameRegion" [(ngModel)]="regionAdd.nameRegion"
+                <input required type="text"  name="nameRegion" [(ngModel)]="region.nameRegion"
                  class="form-control" type="text" placeholder="entrer nom région"/>
               </div>
               <div class="form-group">
                 <label for="username"><span class="req">*</span> Province:</label><br/>
-                <select [(ngModel)]="regionAdd.idProvince" name="idProvince">
+                <select [(ngModel)]="region.idProvince" name="idProvince">
                   <option *ngFor="let province of provinceRegion" value="{{province.idProvince}}">{{province.nomProvince}}</option>
                 </select>
               </div>
@@ -60,21 +60,25 @@
       <pre>{{closeResult}}</pre>
     <div class="container">
         <div class="table-responsive">
-            <table class="table table-dark">
+            <table class="table table-dark ">
                 <thead>
-                    <tr class="table-dark">
+                    <tr class="entete">
                       <th>Code region</th>
                         <th>Region</th>
                         <th>Province</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr *ngFor="let reg of region" >
-                      <td>{{reg.codeRegion}}</td>
+                <tbody class="">
+                    <tr *ngFor="let reg of regions" >
+                        <td>{{reg.codeRegion}}</td>
                         <td>{{reg.nameRegion}}</td>
                         <td>{{reg.nomProvince}}</td>
-                        <td class="rest-center"><button class="btn btn-primary btn-xs" (click)="deletePerson()"> Modifier</button>
+                        <td class="rest-center">
+                          <button class="btn btn-danger btn-xs" > Delete</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                          <button class="btn btn-primary btn-xs" data-toggle="modal" 
+                          data-target="#myModal" (click)="updateRegion(reg.idRegion)"> Modifier</button>
+                        </td>
                     </tr>
                 </tbody> 
             </table>
@@ -83,11 +87,59 @@
   </div>
 
 
+   <!-- modal modification  -->
+   <div class="modal" id="myModal">  
+    <div class="modal-dialog">  
+      <div class="modal-content">    
+      <form [formGroup]="regionUpdateForm" #updReg (ngSubmit)="updateReg(updReg)">  
+        <!-- Modal Header -->  
+        <div class="modal-header">  
+          <h4 class="modal-title"> Mis à jour Region </h4>             
+        </div>  
+          
+        <!-- Modal body -->  
+        <div class="modal-body" *ngFor="let region of regionList">
+           <div [hidden]="isUpdated"> 
+                  <input type="hidden" class="form-control"  formControlName="idRegion" [(ngModel)]="region.idRegion" name="idRegion">  
+
+                  <div class="form-group">  
+                      <label for="codeRegion">Code Region :</label>  
+                      <input type="text" class="form-control" formControlName="codeRegion" readonly [(ngModel)]="region.codeRegion"  name="codeRegion">  
+                  </div>  
+            
+                  <div class="form-group">  
+                      <label for="nameRegion">nom region</label>  
+                      <input type="text" class="form-control" formControlName="nameRegion" [(ngModel)]="region.nameRegion">  
+                  </div> 
+
+                  <div class="form-group">
+                    <label for="idProvince"><span class="req">*</span> Province:</label><br/>
+                    <select formControlName="idProvince" required>
+                      <option >{{region.nomProvince}}</option>
+                      <option *ngFor="let province of provinceRegion" value="{{province.idProvince}}">{{province.nomProvince}}</option>
+                    </select>
+                  </div>
+                                    
+           </div>
+           <div [hidden]="!isUpdated">
+                <h4>region mis à jour</h4>
+           </div>
+        </div>
+        <!-- Modal footer -->  
+        <div class="modal-footer" >  
+          <button type="submit" class="btn btn-success" [hidden]="isUpdated">Update</button>  
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeisUpdate()">Close</button>  
+        </div>  
+          
+    </form>  
+      </div>  
+    </div>  
+  </div> 
 
   <p>list-person works!</p>
 
   <!-- Footer -->
-<footer class="page-footer font-small special-color-dark pt-4">
+  <footer class="page-footer font-small special-color-dark pt-4">
 
   <!-- Footer Elements -->
   <div class="container">
@@ -153,3 +205,4 @@
 
 </footer>
 <!-- Footer -->
+</body>

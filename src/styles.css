@@ -180,9 +180,19 @@ This class makes the topnav look good on small screens (display the links vertic
     width: 200%;
     text-align: left;
   }
+
+  .entete {
+    background-color: rgb(100, 138, 207);
+  }
 }
 
-html, body { height: 100%; width: 100%;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  width: 100%;
+}
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
 
 

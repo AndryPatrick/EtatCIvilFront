@@ -3,6 +3,8 @@ import { RegionService } from '../region.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ProvinceService } from '../province.service';
 import { Region } from '../region';
+import { Observable } from 'rxjs';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-region',
@@ -12,13 +14,94 @@ import { Region } from '../region';
 export class RegionComponent implements OnInit {
 
   message : any;
-  region : any;
-  regionAdd : Region = new Region("","",0);
+  regionList : any;
+  regions : Observable<Region[]>;
+  region : Region = new Region();
   provinceRegion : any;
+  isUpdated = false;
+  nom : any;
 
   closeResult: string;
   constructor(private serviceRegion : RegionService, private modalService : NgbModal,private province : ProvinceService) { }
 
+  ngOnInit() {
+    this.isUpdated = false;
+    this.serviceRegion.getListRegion().subscribe(
+      data => {
+        this.regions = data;
+        console.log('this.data',this.regions)
+      }
+    );
+    let province = this.province.getListProvince().subscribe(
+      data => {
+        this.provinceRegion = data;
+        console.log('this.data',this.provinceRegion);
+      }
+    );
+  }
+
+  public addRegion() {
+    let response = this.serviceRegion.addRegion(this.region);
+    response.subscribe((data)=>this.message = data);
+  }
+
+  public getProvince() {
+      let province = this.province.getListProvince().subscribe(
+        data => {
+          this.provinceRegion = data;
+          console.log('this.data',this.provinceRegion);
+        }
+      );
+  }
+
+  public listeRegion() {
+    this.serviceRegion.getListRegion().subscribe(
+      data=> {
+          this.regions = data;
+          console.log('this.data',this.regions);
+      }
+    );
+  }
+
+  updateRegion(id:number) {
+    this.serviceRegion.getRegion(id).subscribe(
+      data => {
+          this.regionList = data;
+          console.log("this.data", this.regionList);
+      },
+    error => console.log(error));  
+  }
+
+  regionUpdateForm = new FormGroup({
+    idRegion : new FormControl(),
+    codeRegion : new FormControl(),
+    nameRegion : new FormControl(),
+    idProvince : new FormControl(),    
+    nomProvince : new FormControl()
+  });
+
+  updateReg(updReg) {
+    this.region = new Region();
+    this.region.idRegion = this.RegionId.value;
+    this.region.nameRegion = this.RegionName.value;
+    this.region.idProvince = this.ProvinceId.value;
+    this.region.nomProvince = this.ProvinceNom.value;
+
+    this.serviceRegion.updateRegion(this.region.idRegion, this.region).subscribe(
+      data => {
+        this.isUpdated = true;
+        this.serviceRegion.getListRegion().subscribe(data => {
+          this.regions = data;
+        })
+      },
+      error => console.log(error));
+  }
+
+  changeisUpdate() {
+    this.isUpdated = false;
+  } 
+
+  //class modal pour l'ajout
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -36,43 +119,26 @@ export class RegionComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
+  //fin description modal
 
-  public addRegion() {
-    let response = this.serviceRegion.addRegion(this.regionAdd);
-    response.subscribe((data)=>this.message = data);
+  get RegionId() {
+    return this.regionUpdateForm.get("idRegion");
   }
 
-  public getProvince() {
-      let province = this.province.getListProvince().subscribe(
-        data => {
-          this.provinceRegion = data;
-          console.log('this.data',this.provinceRegion);
-        }
-      );
+  get RegionCode() {
+    return this.regionUpdateForm.get("codeRegion");
   }
 
-  public listeRegion() {
-    this.serviceRegion.getListRegion().subscribe(
-      data=> {
-          this.region = data;
-          console.log('this.data',this.region);
-      }
-    );
+  get RegionName() {
+    return this.regionUpdateForm.get("nameRegion");
   }
 
-  ngOnInit() {
-    this.serviceRegion.getListRegion().subscribe(
-      data => {
-        this.region = data;
-        console.log('this.data',this.region)
-      }
-    );
-    let province = this.province.getListProvince().subscribe(
-      data => {
-        this.provinceRegion = data;
-        console.log('this.data',this.provinceRegion);
-      }
-    );
+  get ProvinceId() {
+    return this.regionUpdateForm.get("idProvince");
+  }
+
+  get ProvinceNom() {
+    return this.regionUpdateForm.get("nomProvince");
   }
 
 }
